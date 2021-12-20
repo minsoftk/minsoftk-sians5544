@@ -5,19 +5,19 @@ const $counter = document.querySelector('.counter');
 const MakeCounter = (() => {
   let counter = 0;
 
-  return preicate => {
-    counter = preicate(counter);
+  return predicate => {
+    counter = predicate(counter);
     return counter;
   };
 })();
 
-const increase = n => ++n;
-const decrease = n => --n;
+const increase = n => n + 1;
+const decrease = n => (n ? n - 1 : 0);
 
-$increaseBtn.addEventListener('click', e => {
-  $counter.innerHTML = MakeCounter(increase);
+$increaseBtn.addEventListener('click', () => {
+  $counter.textContent = MakeCounter(increase);
 });
 
-$decreaseBtn.addEventListener('click', e => {
-  $counter.innerHTML = MakeCounter(decrease);
+$decreaseBtn.addEventListener('click', () => {
+  $counter.textContent = MakeCounter(decrease);
 });

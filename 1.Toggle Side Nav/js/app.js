@@ -11,7 +11,7 @@ const toggleTransition = isDisable => {
 
 const fetchToggleState = () => {
   let isToggle = JSON.parse(localStorage.getItem('isToggle'));
-  isToggle ? toggleTransition() : (isToggle = false);
+  isToggle ? toggleTransition(true) : (isToggle = false);
   $containerNav.classList.toggle('active', isToggle);
 };
 

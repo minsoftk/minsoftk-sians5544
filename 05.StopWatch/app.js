@@ -10,7 +10,7 @@ let miliSecond = 0;
 // const minute = 0;
 
 let isStart = 1;
-let interval = 0;
+let intervalId;
 
 // 1
 // const printTimer = () => {
@@ -20,40 +20,45 @@ let interval = 0;
 //   return `${sMinute}:${sSecond}:${sMiliSecond}`;
 // };
 
+const removeDisableAttr = () => {
+  if ($resetBtn.hasAttribute('disabled')) $resetBtn.removeAttribute('disabled');
+};
+
+const timeDisplay = () => {
+  const mm = Math.floor(miliSecond / 6000);
+  const ss = Math.floor(miliSecond / 100) % 60;
+  const ms = miliSecond % 100;
+  $timerDisplay.textContent = `${mm < 10 ? `0${mm}` : `${mm}`}:${ss < 10 ? `0${ss}` : `${ss}`}:${
+    ms < 10 ? `0${ms}` : `${ms}`
+  }`;
+
+  // if (second === 60) {
+  //   minute++;
+  //   second = 0;
+  // }
+  // if (miliSecond === 100) {
+  //   second++;
+  //   miliSecond = 0;
+  // }
+
+  // $timerDisplay.textContent = printTimer();
+  // miliSecond++;
+};
+
+const assignInterval = () => {
+  intervalId = setInterval(() => {
+    miliSecond += 1;
+    timeDisplay();
+  }, 10);
+};
+
 $startBtn.addEventListener('click', e => {
   e.target.textContent = isStart ? 'Stop' : 'Start';
   $resetBtn.textContent = isStart ? 'Lap' : 'Reset';
 
-  if ($resetBtn.hasAttribute('disabled')) $resetBtn.removeAttribute('disabled');
+  removeDisableAttr();
 
-  if (isStart) {
-    interval = setInterval(() => {
-      miliSecond += 1;
-
-      // 2.
-      const mm = Math.floor(miliSecond / 6000);
-      const ss = Math.floor(miliSecond / 100) % 60;
-      const ms = miliSecond % 100;
-      $timerDisplay.textContent = `${mm < 10 ? `0${mm}` : `${mm}`}:${ss < 10 ? `0${ss}` : `${ss}`}:${
-        ms < 10 ? `0${ms}` : `${ms}`
-      }`;
-
-      // 2.
-      // if (second === 60) {
-      //   minute++;
-      //   second = 0;
-      // }
-      // if (miliSecond === 100) {
-      //   second++;
-      //   miliSecond = 0;
-      // }
-
-      // $timerDisplay.textContent = printTimer();
-      // miliSecond++;
-    }, 10);
-  } else {
-    clearInterval(interval);
-  }
+  isStart ? assignInterval() : clearInterval(intervalId);
 
   isStart = !isStart;
 });
@@ -66,11 +71,6 @@ $resetBtn.addEventListener('click', () => {
     $laps.style.display = 'grid';
     $laps.innerHTML += `<div>${id++}</div><div>${$timerDisplay.textContent}</div>`;
   } else {
-    // 3.
-    // miliSecond = 0;
-    // second = 0;
-    // minute = 0;
-
     // 3.
     $timerDisplay.textContent = '00:00:00';
     // $timerDisplay.textContent = printTimer();
@@ -92,3 +92,5 @@ $resetBtn.addEventListener('click', () => {
 // $display.textContent = `${mm < 10 ? `0${mm}` : `${mm}`}:${ss < 10 ? `0${ss}` : `${ss}`}:${
 // 	ms < 10 ? `0${ms}` : `${ms}`
 // }`;
+
+// 5번 마지막,  6번 리팩토링

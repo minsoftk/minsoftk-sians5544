@@ -25,3 +25,9 @@ const handleLoad = () => {
 };
 
 window.addEventListener('load', handleLoad);
+
+// load, DOMContentLoaded의 차이?
+// window.addEventListener('load', currentClock); 가 왜 currnetClock보다 나중에 와야하는가?
+// setProperty 적용에 대해서
+
+// 무엇을 몰랐는지 => 어떻게 해결했는지

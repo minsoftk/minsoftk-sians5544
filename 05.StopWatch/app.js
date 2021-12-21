@@ -3,7 +3,7 @@ const $timerDisplay = document.querySelector('.stopwatch > .display');
 const $stopWatch = document.querySelector('.stopwatch');
 const $startBtn = $stopWatch.children[1];
 const $resetBtn = $stopWatch.children[2];
-const $laps = document.querySelectorAll('.laps');
+const $laps = document.querySelector('.laps');
 
 let miliSecond = 0;
 let second = 0;
@@ -23,7 +23,7 @@ const printTimer = () => {
   const sSecond = second < 10 ? `0${second}` : `${second}`;
   const sMiliSecond = miliSecond < 10 ? `0${miliSecond}` : `${miliSecond}`;
 
-  $timerDisplay.textContent = `${sMinute}:${sSecond}:${sMiliSecond}`;
+  return `${sMinute}:${sSecond}:${sMiliSecond}`;
 };
 
 $startBtn.addEventListener('click', e => {
@@ -41,7 +41,7 @@ $startBtn.addEventListener('click', e => {
         miliSecond = 0;
       }
 
-      printTimer();
+      $timerDisplay.textContent = printTimer();
       miliSecond++;
     }, 10);
   } else {
@@ -51,6 +51,7 @@ $startBtn.addEventListener('click', e => {
   isStart = !isStart;
 });
 
+let id = 1;
 $resetBtn.addEventListener('click', () => {
   // stop 버튼일때, lap
   // laps()
@@ -61,12 +62,15 @@ $resetBtn.addEventListener('click', () => {
   // laps일때
   if (!isStart) {
     $laps.style.display = 'grid';
-    $laps.innerHTML += `<div>${$laps}</div>`;
+    $laps.innerHTML += `<div>${id++}</div><div>${printTimer()}</div>`;
   } else {
     miliSecond = 0;
     second = 0;
     minute = 0;
-    printTimer();
+    $timerDisplay.textContent = printTimer();
+    $laps.innerHTML = '<div>Laps</div><div>Time</div>';
+    $laps.style.display = 'none';
+    id = 1;
   }
 });
 

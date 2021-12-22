@@ -27,8 +27,7 @@
       }
 
       .modal {
-        /* display: none; */
-        display: block;
+        display: none;
         position: fixed;
         top: 0;
         left: 0;
@@ -40,6 +39,7 @@
 
       /* 팝업을 위한 CSS */
       .modalDisplay {
+        /* display: none; */
         position: absolute;
         top: 20%;
         left: 50%;
@@ -67,7 +67,7 @@
   </head>
   <body>
     <h1 class="title">Popup</h1>
-    <button>toggle popup</button>
+    <button type="button" class="toggleButton">toggle popup</button>
 
     <div class="modal">
       <div class="modalDisplay">

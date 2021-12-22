@@ -38,7 +38,7 @@
       }
 
       /* 팝업을 위한 CSS */
-      .modalDisplay {
+      .modal-display {
         /* display: none; */
         position: absolute;
         top: 20%;
@@ -53,14 +53,17 @@
         background-color: white;
       }
 
-      .popupForm {
+      .popup-form {
         padding: 5px;
       }
 
-      .popUpClose {
+      .popUp-close {
         position: absolute;
         top: 8%;
         right: 5%;
+      }
+      .from-popup {
+        display: none;
       }
     </style>
     <script defer src="app.js"></script>
@@ -70,21 +73,21 @@
     <button type="button" class="toggleButton">toggle popup</button>
 
     <div class="modal">
-      <div class="modalDisplay">
+      <div class="modal-display">
         <h2 class="title">Hello</h2>
         <p class="popup-message">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex aperiam facere hic voluptatem ea, distinctio iure
           ipsa sunt saepe error, illo fugiat nesciunt perspiciatis cumque non optio nobis in consectetur!
         </p>
-        <form class="popupForm">
-          <label><input type="text" class="popupInput" /></label>
-          <button type="submit" class="popUpOk">OK</button>
-          <button type="button" class="popUpCancel">Cancel</button>
+        <form class="popup-form">
+          <label><input type="text" class="popup-input" /></label>
+          <button type="submit" class="popUp-ok">OK</button>
+          <button type="button" class="popUp-cancel">Cancel</button>
         </form>
-        <button class="popUpClose">X</button>
+        <button class="popUp-close">X</button>
       </div>
     </div>
 
-    <div class="fromPopup">fromPopup:</div>
+    <div class="from-popup">fromPopup:</div>
   </body>
 </html>

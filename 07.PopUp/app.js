@@ -1,34 +1,39 @@
 const $toggleButton = document.querySelector('.toggleButton');
 const $modal = document.querySelector('.modal');
-const $popupInput = document.querySelector('.popupInput');
-const $modalButtons = document.querySelectorAll('.modalDisplay button');
+const $popupInput = document.querySelector('.popup-input');
+const $fromPopup = document.querySelector('.from-popup');
+
+const $popUpCancel = document.querySelector('.popUp-cancel');
+const $popUpClose = document.querySelector('.popUp-close');
 
 const setDisplayNone = () => {
   $modal.style.display = 'none';
+  $popupInput.value = '';
 };
 
-$modalButtons.forEach(elem => {
-  elem.addEventListener('click', e => {
-    if (elem.classList.contains('popUpOk')) {
-      e.preventDefault();
-    }
-    setDisplayNone();
-  });
-});
+document.querySelector('form').addEventListener('submit', e => {
+  e.preventDefault();
 
-$popupInput.addEventListener('submit', () => {});
+  const content = $popupInput.value.trim();
+
+  if (content) {
+    $fromPopup.style.display = 'block';
+    $fromPopup.textContent = 'fromPopup: ' + content;
+    $popupInput.value = '';
+  }
+
+  setDisplayNone();
+});
 
 $toggleButton.addEventListener('click', () => {
   $modal.style.display = 'block';
+  $popupInput.focus();
 });
+
+$popUpClose.addEventListener('click', () => setDisplayNone());
+$popUpCancel.addEventListener('click', () => setDisplayNone());
 
 $modal.addEventListener('click', e => {
   if (!e.target.classList.contains('modal')) return;
-  setDisplayNone($modal);
+  setDisplayNone();
 });
-
-/*
-1) form 기본기능 -> enter 누르면 submit 발생
-2) 그런데 우리는 enter 을 눌러서 input value 가져와야댐
-3) keyup -> enter  x => 1번 때문 
-	(submit 이벤트를 열어서 e.prevet (기본기능 막기) -> keyup ) , form 태그 버리기 -div로 바꾸기  */

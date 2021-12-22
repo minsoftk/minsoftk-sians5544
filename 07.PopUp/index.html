@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Popup</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <style>
+      *,
+      *::after,
+      *::before {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Open Sans';
+        font-weight: 300;
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+      }
+      .title {
+        color: #db5b33;
+        font-weight: 300;
+        text-align: center;
+      }
+
+      .modal {
+        /* display: none; */
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        background-color: rgba(155, 158, 161, 0.8);
+      }
+
+      /* 팝업을 위한 CSS */
+      .modalDisplay {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        width: 100%;
+        max-width: 520px;
+        min-height: 200px;
+        transform: translateX(-50%);
+        border: 1px solid #dee2e6;
+        border-radius: 4px;
+        padding: 20px;
+        background-color: white;
+      }
+
+      .popupForm {
+        padding: 5px;
+      }
+
+      .popUpClose {
+        position: absolute;
+        top: 8%;
+        right: 5%;
+      }
+    </style>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <h1 class="title">Popup</h1>
+    <button>toggle popup</button>
+
+    <div class="modal">
+      <div class="modalDisplay">
+        <h2 class="title">Hello</h2>
+        <p class="popup-message">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex aperiam facere hic voluptatem ea, distinctio iure
+          ipsa sunt saepe error, illo fugiat nesciunt perspiciatis cumque non optio nobis in consectetur!
+        </p>
+        <form class="popupForm">
+          <label><input type="text" class="popupInput" /></label>
+          <button type="submit" class="popUpOk">OK</button>
+          <button type="button" class="popUpCancel">Cancel</button>
+        </form>
+        <button class="popUpClose">X</button>
+      </div>
+    </div>
+  </body>
+</html>

@@ -12,6 +12,7 @@ let miliSecond = 0;
 let isStart = 1;
 let intervalId;
 
+// 즉시실행함수, 클로저
 // 1
 // const printTimer = () => {
 //   const sMinute = minute < 10 ? `0${minute}` : `${minute}`;
@@ -52,6 +53,7 @@ const assignInterval = () => {
   }, 10);
 };
 
+// 이벤트 위임
 $startBtn.addEventListener('click', e => {
   e.target.textContent = isStart ? 'Stop' : 'Start';
   $resetBtn.textContent = isStart ? 'Lap' : 'Reset';
@@ -82,7 +84,6 @@ $resetBtn.addEventListener('click', () => {
 });
 
 // 재할당 or 밀리세커즈로 계산 어느 것이 더 효율적인가? 가독성이 좋은가?
-// 웹 페이지 동작 vs 웹 어플리케이션 상태 저장
 // disabled = true , disabled
 
 // miliSecond += 1;

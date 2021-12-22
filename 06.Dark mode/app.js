@@ -20,6 +20,8 @@ window.addEventListener('DOMContentLoaded', () => {
   // $body.style.opacity = 1;
 });
 
+// 초기 렌더링시에만 트랜지션이 안보이면 됨.
+// .notransition class 만들기
 $toggleBtn.addEventListener('click', () => {
   // console.log($toggleBtn.style.transition);
   if ($toggleBtn.style.transition === 'none 0s ease 0s' && $toggleBtnTextOn.style.transition === 'none 0s ease 0s') {
@@ -32,6 +34,6 @@ $toggleBtn.addEventListener('click', () => {
   // localStorage.theme = document.body.classList.contains('dark') ? 'dark' : '';
 });
 
-// localStorage에서 theme state 받아오고 난 뒤, transition 없애는 문제 -> load 이벤트를 사용해서 transition이 생기는 경우들이 있었음.
+// localStorage에서 theme state 받아오고 난 뒤, transition 없애는 문제 -> load 이벤트를 사용해서 transition이 생기는 경우들이 있었음. DOMContentLoaded로 해결
 // .notrnasition css 를 만들어주는 것은 안되나?
 // transition = none 설정했을 때, none 0s ease 0s

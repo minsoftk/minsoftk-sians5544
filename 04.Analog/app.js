@@ -2,10 +2,10 @@ const $timeHour = document.querySelector('.hour');
 const $timeMinute = document.querySelector('.minute');
 const $timeSecond = document.querySelector('.second');
 
-const currentClock = () => {
-  const HOUR_DEGREE = 30;
-  const TIME_TO_DEGREE = 6;
+const HOUR_DEGREE = 30;
+const TIME_TO_DEGREE = 6;
 
+const currentClock = () => {
   const currentTime = new Date();
 
   const hour = currentTime.getHours();
@@ -20,6 +20,7 @@ const currentClock = () => {
   $timeSecond.style.setProperty('--deg', second * TIME_TO_DEGREE);
 };
 
+// handle
 const handleLoad = () => {
   setInterval(() => currentClock(), 1000);
 };

@@ -78,3 +78,5 @@ $tabs.addEventListener('click', e => {
 });
 
 // $tabs 이벤트 리스너에서 자식 요소의 $tabContent를 받아오지 못함.
+
+// https://davidwalsh.name/css-variables-javascript

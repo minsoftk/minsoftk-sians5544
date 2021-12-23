@@ -69,6 +69,8 @@ $tabs.addEventListener('click', e => {
   const $tabContent = document.querySelectorAll('.tab-content');
   const $glider = document.querySelector('.glider');
 
+  if (!e.target.classList.contains('tab')) return;
+
   [...$tabContent].forEach((content, index) => {
     content.classList.toggle('active', index === +e.target.dataset.index);
     $glider.style.left = `${e.target.dataset.index * TABWIDTH}px`;

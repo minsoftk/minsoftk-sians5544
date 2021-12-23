@@ -2,6 +2,7 @@
 // eslint-disable-next-line arrow-body-style
 
 const $tabs = document.querySelector('.tabs');
+const $spinner = document.querySelector('.spinner');
 
 let todos = [];
 const fetchTabsData = () =>
@@ -50,25 +51,28 @@ const render = () => {
   });
 };
 
+// event handlers
 window.addEventListener('DOMContentLoaded', () => {
   fetchTabsData().then(response => {
     todos = response;
     render();
+
+    $tabs.style.setProperty('--tabs-length', `${todos.length}`);
+    $spinner.style.display = 'none';
   });
 });
 
 // tabs의 자식요소 .tab 에 이벤트 위임 , data-index를 저장
 // tab-content에서 active 어트리뷰트 찾아서 제거해주고, data-index번의 요소에 active를 추가.
+const TABWIDTH = 200;
 $tabs.addEventListener('click', e => {
   const $tabContent = document.querySelectorAll('.tab-content');
+  const $glider = document.querySelector('.glider');
 
   [...$tabContent].forEach((content, index) => {
     content.classList.toggle('active', index === +e.target.dataset.index);
+    $glider.style.left = `${e.target.dataset.index * TABWIDTH}px`;
   });
 });
 
 // $tabs 이벤트 리스너에서 자식 요소의 $tabContent를 받아오지 못함.
-
-// todo
-// loading 없애는 것.
-// tab 클릭했을 때, 색깔 변경해주기

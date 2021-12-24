@@ -37,3 +37,5 @@ $modal.addEventListener('click', e => {
   if (!e.target.classList.contains('modal')) return;
   setDisplayNone();
 });
+
+// setProperty , style.~~ 차이?

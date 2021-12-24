@@ -7,8 +7,8 @@ const title = { success: 'Well done!', error: 'Check it Out!', warning: 'Check i
 
 const toastBox = category => {
   const $len = document.querySelectorAll('.toast');
-
   const $div = document.createElement('div');
+
   $div.className = `toast toast-${category}`;
   document.body.appendChild($div);
   $div.innerHTML = `
@@ -20,21 +20,10 @@ const toastBox = category => {
 			<p> This is a ${category} alert</p>
 		</div>
 		<a class="close">&times;</a>`;
-  // document.body.insertAdjacentHTML(
-  //   'beforeend',
-  //   `
-  // 	<h4 class="toast-heading">Title</h4>
-  // 		<div class="toast-message">
-  // 			<svg width="24" height="24">
-  // 				<use href="#success" />
-  // 			</svg>
-  // 			<p>Message</p>
-  // 		</div>
-  // 		<a class="close">&times;</a>`
-  // );
+
   setTimeout(() => {
     document.body.removeChild($div);
-  }, 10000000);
+  }, 3000);
 };
 
 const adjustHeight = () => {

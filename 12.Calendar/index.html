@@ -9,7 +9,7 @@
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
     <style>
       :root {
-        --calendar-size: 400px;
+        --calendar-size: 400;
       }
       *,
       *::after,
@@ -38,9 +38,9 @@
 
       .calendar {
         display: none;
-        width: var(--calendar-size);
         /* height: 600px; */
-        /* font-size: 32px; */
+        width: calc(var(--calendar-size) * 1px);
+        font-size: calc(var(--calendar-size) / 25 * 1px);
 
         border: 0;
         border-color: transparent;
@@ -66,19 +66,21 @@
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         grid-gap: 5px;
-        /* text-align: center; */
         align-items: center;
         justify-items: center;
       }
 
       .grid-item {
-        padding: 10px;
+        width: calc(var(--calendar-size) / 10 * 1px);
+        text-align: center;
+        padding: calc(var(--calendar-size) / 50 * 1px) calc((var(--calendar-size) / 150) * 1px);
+        margin: calc(var(--calendar-size) / 50 * 1px) 0;
       }
 
       .this-month-date:hover {
         background-color: #3bba6d;
         color: white;
-        border-radius: 50%;
+        border-radius: 100%;
       }
 
       .date-info,

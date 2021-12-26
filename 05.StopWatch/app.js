@@ -62,7 +62,7 @@ $resetBtn.addEventListener('click', () => {
     $resetBtn.setAttribute('disabled', '');
   }
 
-  if ($resetBtn.textContent === 'Lap' && isStartBtn === false) {
+  if ($resetBtn.textContent === 'Lap' && !isStartBtn) {
     $laps.style.display = 'grid';
     $laps.innerHTML += `<div>${id}</div><div>${$timerDisplay.textContent}</div>`;
     id++;

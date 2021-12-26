@@ -1,8 +1,8 @@
 const $toggleButton = document.querySelector('.toggleButton');
 const $modal = document.querySelector('.modal');
-const $popupInput = document.querySelector('.popup-input');
 const $fromPopup = document.querySelector('.from-popup');
 
+const $popupInput = document.querySelector('.popup-input');
 const $popUpCancel = document.querySelector('.popUp-cancel');
 const $popUpClose = document.querySelector('.popUp-close');
 

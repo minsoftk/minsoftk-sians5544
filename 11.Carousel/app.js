@@ -3,6 +3,11 @@ const $container = document.querySelector('.carousel');
 let imagesAll = [];
 let currentSlide = 1;
 
+const buttonObj = [
+  { name: 'prev', value: '&laquo;' },
+  { name: 'next', value: '&raquo;' },
+];
+
 const carousel = ($container, images) => {
   const $carouselslides = document.createElement('div');
 
@@ -11,22 +16,18 @@ const carousel = ($container, images) => {
   imagesAll = [images[images.length - 1], ...images, images[0]];
 
   imagesAll.forEach(image => {
-    const img = document.createElement('img');
-    img.src = image;
-    $carouselslides.appendChild(img);
+    const $img = document.createElement('img');
+    $img.src = image;
+    $carouselslides.appendChild($img);
   });
 
   $container.appendChild($carouselslides);
 
-  [
-    ['prev', '&laquo;'],
-    ['next', '&raquo;'],
-  ].forEach(text => {
-    const $button = document.createElement('button');
-    $button.classList.add('carousel-control');
-    $button.classList.add(text[0]);
-    $button.innerHTML = `${text[1]}`;
-    $container.appendChild($button);
+  buttonObj.forEach(({ name, value }) => {
+    const $carouselControl = document.createElement('button');
+    $carouselControl.classList.add('carousel-control', name);
+    $carouselControl.innerHTML = value;
+    $container.appendChild($carouselControl);
   });
 };
 
@@ -62,12 +63,13 @@ $container.addEventListener('click', e => {
 $container.addEventListener('transitionend', e => {
   if (!e.target.classList.contains('carousel-slides')) return;
 
-  if (currentSlide === 0) currentSlide = 4;
+  if (currentSlide === 0) currentSlide = imagesAll.length - 2;
   else if (currentSlide === imagesAll.length - 1) currentSlide = 1;
 
   e.target.style.setProperty('--duration', '0');
   e.target.style.setProperty('--currentSlide', currentSlide);
 });
+
 // https://stackoverflow.com/questions/53288059/loading-multiple-images-with-javascript
 // carousel의 width만 맞춰주면 heigth는?
 // carousel의 요소들인 img의 크기를 carousel 크기에 맞추는게 맞는지,

@@ -24,12 +24,96 @@
       }
 
       /* 뷰를 구현하세요. */
+      .date-picker {
+        caret-color: transparent;
+      }
+
+      .date-picker:focus {
+        border-color: cornflowerblue;
+        /* cursor: none; */
+      }
+
+      .calendar {
+        display: none;
+        --calendar-size: 400px;
+        width: var(--calendar-size);
+        font-size: var(--calendar-size/100);
+
+        border: 0;
+        border-color: transparent;
+        border-radius: 0.6rem;
+        box-shadow: 5px 5px 20px#aaa, -5px 5px 20px #aaa;
+      }
+
+      .button {
+        border: 0;
+        background-color: transparent;
+        color: white;
+      }
+
+      .calendar-nav {
+        display: flex;
+        justify-content: space-between;
+        background-color: #3bba6d;
+        border-bottom: 0px;
+        padding: 1rem;
+        border-radius: 0.6rem 0.6rem 0 0;
+      }
+      .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-gap: 5px;
+      }
+
+      .date-info,
+      .date-info p {
+        color: white;
+        margin: 0;
+        text-align: center;
+      }
+      .date-info {
+        font-size: 0.8em;
+      }
+      .date-info p {
+        font-size: 1.5em;
+      }
+
+      /* 날짜 동적으로 삽입해줘야 됨. 해당 달의 날짜인지 전달 혹은 다음달인지 주말 */
+      .present-holiday {
+        color: red;
+      }
+      .prev-next-month {
+        color: #aaa;
+      }
+      .select-today {
+      }
     </style>
   </head>
   <body>
     <h1 class="title">Calendar</h1>
+
+    <!-- 뷰를 구현하세요 -->
+    <input type="date" />
+    <input class="date-picker" type="text" placeholder="Selected date" />
     <div class="calendar">
-      <!-- 뷰를 구현하세요 -->
+      <div class="calendar-nav">
+        <button class="prev-button button">◀</button>
+        <div class="date-info">
+          <p>연</p>
+          <span>월</span>
+        </div>
+        <button class="next-button button">▶</button>
+      </div>
+      <div class="calendar-grid">
+        <div class="day">SUN</div>
+        <div class="day">MON</div>
+        <div class="day">TUE</div>
+        <div class="day">WED</div>
+        <div class="day">THU</div>
+        <div class="day">FRI</div>
+        <div class="day">SAT</div>
+      </div>
     </div>
+    <script defer src="app.js"></script>
   </body>
 </html>

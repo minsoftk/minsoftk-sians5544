@@ -1,10 +1,12 @@
 // fetch fake data
 // eslint-disable-next-line arrow-body-style
-
 const $tabs = document.querySelector('.tabs');
 const $spinner = document.querySelector('.spinner');
 
-let todos = [];
+const TABWIDTH = 200;
+
+let tabsData = [];
+
 const fetchTabsData = () =>
   new Promise(resolve => {
     setTimeout(
@@ -29,11 +31,11 @@ const fetchTabsData = () =>
 
 const render = () => {
   const $nav = document.createElement('nav');
-  todos.forEach((todo, idx) => {
+  tabsData.forEach((tab, idx) => {
     const $div = document.createElement('div');
     $div.classList.add('tab');
     $div.setAttribute('data-index', idx);
-    $div.textContent = todo.title;
+    $div.textContent = tab.title;
     $nav.appendChild($div);
   });
 
@@ -42,11 +44,11 @@ const render = () => {
   $nav.appendChild($span);
   $tabs.appendChild($nav);
 
-  todos.forEach((todo, idx) => {
+  tabsData.forEach((tab, idx) => {
     const $div = document.createElement('div');
     idx ? $div.classList.add('tab-content') : $div.classList.add('tab-content', 'active');
     // toggle로 바꿔보기
-    $div.textContent = todo.content;
+    $div.textContent = tab.content;
     $tabs.appendChild($div);
   });
 };
@@ -54,17 +56,16 @@ const render = () => {
 // event handlers
 window.addEventListener('DOMContentLoaded', () => {
   fetchTabsData().then(response => {
-    todos = response;
+    tabsData = response;
     render();
 
-    $tabs.style.setProperty('--tabs-length', `${todos.length}`);
+    $tabs.style.setProperty('--tabs-length', `${tabsData.length}`);
     $spinner.style.display = 'none';
   });
 });
 
 // tabs의 자식요소 .tab 에 이벤트 위임 , data-index를 저장
 // tab-content에서 active 어트리뷰트 찾아서 제거해주고, data-index번의 요소에 active를 추가.
-const TABWIDTH = 200;
 $tabs.addEventListener('click', e => {
   const $tabContent = document.querySelectorAll('.tab-content');
   const $glider = document.querySelector('.glider');

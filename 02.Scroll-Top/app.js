@@ -1,35 +1,17 @@
 // DOM nodes
 const $scrollBtn = document.querySelector('.scroll-icon');
-// const yOffset = window.pageYOffset;
-// console.log(yOffset);
 
 $scrollBtn.addEventListener('click', () => {
   window.scrollTo(0, 0);
 });
-
-const throttle = (callback, delay) => {
-  let timerId;
-  return event => {
-    if (timerId) return;
-    timerId = setTimeout(
-      () => {
-        callback(event);
-        timerId = null;
-      },
-      delay,
-      event
-    );
-  };
-};
 
 // 사용자 관점!
 // Loadash 사용하기
 const LIMIT_OFFSET = 200;
 document.addEventListener(
   'scroll',
-  throttle(() => {
-    console.log(window.pageYOffset);
-    if (window.pageYOffset > LIMIT_OFFSET) $scrollBtn.style.display = 'block';
+  _.throttle(() => {
+    $scrollBtn.style.display = window.pageYOffset > LIMIT_OFFSET ? 'block' : 'none';
   }, 200)
 );
 
@@ -37,3 +19,4 @@ document.addEventListener(
 // problems
 // 1. opacity 문제
 // 2. 스로틀 : 200으로 설정했을 때, 스크롤을 빨리 내리면 pageYOffset 동작이 안함.
+// offset, scroll, client 구별

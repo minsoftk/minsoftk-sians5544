@@ -3,7 +3,7 @@ const $timeMinute = document.querySelector('.minute');
 const $timeSecond = document.querySelector('.second');
 
 const HOUR_DEGREE = 30;
-const TIME_TO_DEGREE = 6;
+const MMSS_TO_DEGREE = 6;
 
 const currentClock = () => {
   const currentTime = new Date();
@@ -13,11 +13,11 @@ const currentClock = () => {
   const second = currentTime.getSeconds();
 
   const hourAngle =
-    (hour > 12 ? (hour - 12) * HOUR_DEGREE : hour * HOUR_DEGREE) + (currentTime.getMinutes() / 60) * HOUR_DEGREE;
+    hour > 12 ? (hour - 12) * HOUR_DEGREE : hour * HOUR_DEGREE + (currentTime.getMinutes() / 60) * HOUR_DEGREE;
 
   $timeHour.style.setProperty('--deg', hourAngle);
-  $timeMinute.style.setProperty('--deg', minute * TIME_TO_DEGREE);
-  $timeSecond.style.setProperty('--deg', second * TIME_TO_DEGREE);
+  $timeMinute.style.setProperty('--deg', minute * MMSS_TO_DEGREE);
+  $timeSecond.style.setProperty('--deg', second * MMSS_TO_DEGREE);
 };
 
 // handle

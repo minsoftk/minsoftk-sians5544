@@ -47,8 +47,7 @@ const render = () => {
     <button class="next-button button">▶</button>
     </div>
 	<div class="calendar-grid">
-	</div>
- `;
+	</div>`;
 
   const $calendarGrid = document.querySelector('.calendar-grid');
   const date = getFirstLastDate();

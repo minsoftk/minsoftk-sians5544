@@ -10,7 +10,7 @@ const toastBox = category => {
   const $div = document.createElement('div');
 
   $div.className = `toast toast-${category}`;
-  document.body.appendChild($div);
+  $body.appendChild($div);
   $div.innerHTML = `
 	<h4 class="toast-heading">${title[category]} ${$len.length}</h4>
 		<div class="toast-message">
@@ -22,15 +22,15 @@ const toastBox = category => {
 		<a class="close">&times;</a>`;
 
   setTimeout(() => {
-    document.body.removeChild($div);
+    $body.removeChild($div);
   }, 3000);
 };
 
 const adjustHeight = () => {
   const $toasts = document.querySelectorAll('.toast');
   $toasts.forEach((item, idx) => {
-    const cal = item.offsetHeight * ($toasts.length - 1 - idx);
-    if (idx !== $toasts.length - 1) item.style.bottom = `${cal}px`;
+    const calcHeight = item.offsetHeight * ($toasts.length - 1 - idx);
+    if (idx !== $toasts.length - 1) item.style.bottom = `${calcHeight}px`;
   });
   $toasts[$toasts.length - 1].style.bottom = '0';
 };

@@ -18,10 +18,12 @@ $accordion.addEventListener('click', e => {
   const $menuContainer = document.querySelectorAll('.menu-container');
 
   $menuContainer.forEach(container => {
-    container.classList.toggle('active', e.target === container.children[0]);
+    const $menu = container.children[0];
+    const $menuItem = container.children[1];
+    container.classList.toggle('active', e.target === $menu);
     !container.classList.contains('active')
-      ? (container.children[1].style.height = 0)
-      : (container.children[1].style.height = `${container.children[1].scrollHeight}px`);
+      ? ($menuItem.style.height = 0)
+      : ($menuItem.style.height = `${$menuItem.scrollHeight}px`);
   });
 });
 

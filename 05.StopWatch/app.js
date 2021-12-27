@@ -60,9 +60,10 @@ let id = 1;
 $resetBtn.addEventListener('click', () => {
   if ($resetBtn.textContent === 'Reset' && $resetBtn.getAttribute('disabled') === null) {
     $resetBtn.setAttribute('disabled', '');
-  }
+  } // 리셋 버튼 누르면 다시 비활성화
 
   if ($resetBtn.textContent === 'Lap' && !isStartBtn) {
+    // isStartBtn false 이면 카운트가 계속 동작하고 있는 상태
     $laps.style.display = 'grid';
     $laps.innerHTML += `<div>${id}</div><div>${$timerDisplay.textContent}</div>`;
     id++;

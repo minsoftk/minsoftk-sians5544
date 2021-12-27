@@ -47,37 +47,36 @@ const render = () => {
     <button class="next-button button">▶</button>
     </div>
 	<div class="calendar-grid">
-	</div>
- `;
+	</div>`;
 
   const $calendarGrid = document.querySelector('.calendar-grid');
   const date = getFirstLastDate();
 
-  const monthDate = Array(NAME_OF_DAYS.length)
-    .fill(0)
-    .map((item, index) => `<div class ='prev-next-month grid-item'>${NAME_OF_DAYS[index]}</div>`);
+  const monthDate = Array.from(
+    { length: NAME_OF_DAYS.length },
+    (_, index) => `<div class ='prev-next-month grid-item'>${NAME_OF_DAYS[index]}</div>`
+  );
 
-  const prevMonthArray = Array(date.thisMonthFirstDate.getDay())
-    .fill(0)
-    .map(
-      (item, idx) =>
-        `<div class ='prev-next-month grid-item this-month-date'> ${
-          date.lastMonthLastDate.getDate() - (6 - date.thisMonthFirstDate.getDay()) + idx + 1
-        }</div>`
-    );
+  const prevMonthArray = Array.from(
+    { length: date.thisMonthFirstDate.getDay() },
+    (_, idx) =>
+      `<div class ='prev-next-month grid-item this-month-date'> ${
+        date.lastMonthLastDate.getDate() - (6 - date.thisMonthFirstDate.getDay()) + idx + 1
+      }</div>`
+  );
 
-  const thisMonthArray = Array(date.thisMonthLastDate.getDate())
-    .fill(0)
-    .map(
-      (item, idx) =>
-        `<div class="grid-item this-month-date ${day === idx + 1 ? ' select-today' : ''} ${
-          (date.thisMonthFirstDate.getDay() + idx) % 7 === 0 ? ' present-holiday' : ''
-        }">${idx + 1}</div>`
-    );
-  console.log(thisMonthArray);
-  const nextMonthArray = Array(6 - date.thisMonthLastDate.getDay())
-    .fill(0)
-    .map((item, idx) => `<div class='prev-next-month grid-item this-month-date'>${idx + 1}</div>`);
+  const thisMonthArray = Array.from(
+    { length: date.thisMonthLastDate.getDate() },
+    (_, idx) =>
+      `<div class="grid-item this-month-date ${day === idx + 1 ? ' select-today' : ''} ${
+        (date.thisMonthFirstDate.getDay() + idx) % 7 === 0 ? ' present-holiday' : ''
+      }">${idx + 1}</div>`
+  );
+
+  const nextMonthArray = Array.from(
+    { length: 6 - date.thisMonthLastDate.getDay() },
+    (_, idx) => `<div class='prev-next-month grid-item this-month-date'>${idx + 1}</div>`
+  );
 
   $calendarGrid.innerHTML = [...monthDate, ...prevMonthArray, ...thisMonthArray, ...nextMonthArray].join('');
 };
@@ -89,7 +88,7 @@ const calcDate = e => {
       month = 11;
       year -= 1;
     }
-  } else if (e.target.classList.contains('next-button')) {
+  } else {
     month += 1;
     if (month === 12) {
       month = 0;
@@ -98,7 +97,6 @@ const calcDate = e => {
   }
 };
 
-// event handlers
 window.addEventListener('DOMContentLoaded', () => {
   fetchCalenderDate();
   render();

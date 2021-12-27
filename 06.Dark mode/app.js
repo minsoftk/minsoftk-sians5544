@@ -3,9 +3,12 @@ const $toggleBtn = document.querySelector('.toggle-button-switch');
 window.addEventListener('DOMContentLoaded', () => {
   let currentTheme = JSON.parse(localStorage.getItem('theme'));
 
-  if (currentTheme === null) currentTheme = window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  if (currentTheme === null) {
+    currentTheme = window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+    localStorage.setItem('theme', currentTheme);
+  }
 
-  document.body.classList.toggle('dark', currentTheme);
+  document.body.classList.toggle('dark', currentTheme === 'dark');
 
   setTimeout(() => {
     document.body.style.opacity = 1;
